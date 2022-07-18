@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Yahtzee
 {
@@ -6,5 +8,10 @@ namespace Yahtzee
     {
         private const int One = 1;
         public int ComputeOnes(int[] dices) => dices.Count(i => i == One);
+
+        public int ComputeTwo(int[] dices)
+        {
+            return 0;
+        }
     }
 }

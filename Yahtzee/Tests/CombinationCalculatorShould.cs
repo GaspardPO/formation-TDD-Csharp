@@ -27,6 +27,15 @@ namespace Tests
         {
             Assert.Equal(expected, _combinationCalculator.ComputeOnes(dices));
         }
-        
+
+        [Theory]
+        [InlineData(new[] { 1, 3, 4, 5, 6 })]
+        [InlineData(new[] { 1, 1, 1, 1, 1 })]
+        [InlineData(new[] { 4, 3, 6, 5, 6 })]
+        public void return_0_when_no_dices_equals_2_for_combination_for_two(int[] dicesWithoutTwo)
+        {
+            Assert.Equal(0, _combinationCalculator.ComputeTwo(dicesWithoutTwo));
+        }
+
     }
 }   
