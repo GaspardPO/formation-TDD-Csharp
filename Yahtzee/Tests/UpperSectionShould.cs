@@ -143,5 +143,51 @@ namespace Tests
 
             Assert.True(upperSectionWithTotalOf63.HasABonus());
         }
+        
+        
+        [Fact]
+        public void Return_total_of_upper_section_with_bonus()
+        {
+            var sumOfOnesIsThree = new Combination(new[] { 1, 1, 1, 5, 2 }, 1);
+            var sumOfTwosIsSix = new Combination(new[] { 2, 2, 2, 5, 1 }, 2);
+            var sumOfThreesIsNine = new Combination(new[] { 3, 2, 3, 3, 1 }, 3);
+            var sumOfFoursIsTwelve = new Combination(new[] { 4, 4, 1, 4, 1 }, 4);
+            var sumOfFivesIsFifteen = new Combination(new[] { 5, 5, 4, 1, 5 }, 5);
+            var sumOfSixIsEighteen = new Combination(new[] { 6, 6, 6, 1, 1 }, 6);
+
+            var upperSectionWithTotalOf63 = new UpperSection(
+                sumOfOnesIsThree,
+                sumOfTwosIsSix,
+                sumOfThreesIsNine,
+                sumOfFoursIsTwelve,
+                sumOfFivesIsFifteen,
+                sumOfSixIsEighteen
+            );
+
+            Assert.Equal(63 + 35,upperSectionWithTotalOf63.GetTotalOfUpperSection());
+        }
+
+        [Fact]
+        public void Return_total_of_upper_section_without_bonus()
+        {
+            var sumOfOnesIsTwo = new Combination(new[] { 1, 3, 1, 5, 2 }, 1);
+            var sumOfTwosIsTwo = new Combination(new[] { 2, 3, 4, 5, 1 }, 2);
+            var sumOfThreesIsSix = new Combination(new[] { 1, 2, 3, 3, 1 }, 3);
+            var sumOfFoursIsFour = new Combination(new[] { 1, 2, 1, 4, 1 }, 4);
+            var sumOfFivesIsFive = new Combination(new[] { 1, 2, 4, 1, 5 }, 5);
+            var sumOfSixIsSix = new Combination(new[] { 6, 2, 4, 1, 1 }, 6);
+
+            var upperSectionWithTotalOf25 = new UpperSection(
+                sumOfOnesIsTwo,
+                sumOfTwosIsTwo,
+                sumOfThreesIsSix,
+                sumOfFoursIsFour,
+                sumOfFivesIsFive,
+                sumOfSixIsSix
+            );
+
+            Assert.Equal(25 ,upperSectionWithTotalOf25.GetTotalOfUpperSection());
+        }
+
     }
 }

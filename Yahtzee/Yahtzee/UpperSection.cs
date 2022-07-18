@@ -1,10 +1,11 @@
-﻿using System;
-using Tests;
+﻿using Tests;
 
 namespace Yahtzee
 {
     public sealed class UpperSection
     {
+        private const int Bonus = 35;
+        private const int ThresholdBonus = 63;
         private readonly Combination _combinaison1;
         private readonly Combination _combinaison2;
         private readonly Combination _combinaison3;
@@ -30,7 +31,12 @@ namespace Yahtzee
 
         public bool HasABonus()
         {
-            return GetTotal() >= 63;
+            return GetTotal() >= ThresholdBonus;
+        }
+
+        public int GetTotalOfUpperSection()
+        {
+             return GetTotal() + (HasABonus() ? Bonus : 0);
         }
     }
 }
