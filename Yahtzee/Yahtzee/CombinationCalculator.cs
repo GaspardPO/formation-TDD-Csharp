@@ -7,11 +7,12 @@ namespace Yahtzee
     public class CombinationCalculator
     {
         private const int One = 1;
-        public int ComputeOnes(int[] dices) => dices.Count(i => i == One);
+        private const int Two = 2;
+        private const int Three = 3;
+        public int ComputeOnes(int[] dices) => dices.Where(i => i== One).Sum();
 
-        public int ComputeTwo(int[] dices)
-        {
-            return dices.Where(i => i==2).Sum();
-        }
+        public int ComputeTwo(int[] dices) => dices.Where(i => i== Two).Sum();
+
+        public int ComputeThree(int[] dices) => dices.Where(i => i== Three).Sum();
     }
 }
