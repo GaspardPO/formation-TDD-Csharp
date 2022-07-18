@@ -14,7 +14,7 @@ namespace Tests
         [InlineData(new[] {4, 3, 6, 5, 6})]
         public void return_0_when_no_dices_equals_1_for_combination_for_ones(int[] dicesWithoutOnes)
         {
-            Assert.Equal(0, _combinationCalculator.ComputeOnes(dicesWithoutOnes));
+            Assert.Equal(0, CombinationCalculator.Compute(dicesWithoutOnes, CombinationCalculator.One));
         }
 
         [Theory]
@@ -25,7 +25,7 @@ namespace Tests
         [InlineData(new[] {1, 1, 1, 1, 1}, 5)]
         public void return_sum_of_as_many_ones_as_possible(int[] dices, int expected)
         {
-            Assert.Equal(expected, _combinationCalculator.ComputeOnes(dices));
+            Assert.Equal(expected, CombinationCalculator.Compute(dices, CombinationCalculator.One));
         }
 
         [Theory]
@@ -34,16 +34,16 @@ namespace Tests
         [InlineData(new[] { 4, 3, 6, 5, 6 })]
         public void return_0_when_no_dices_equals_2_for_combination_for_two(int[] dicesWithoutTwo)
         {
-            Assert.Equal(0, _combinationCalculator.ComputeTwo(dicesWithoutTwo));
+            Assert.Equal(0, CombinationCalculator.Compute(dicesWithoutTwo, CombinationCalculator.Two));
         }
 
         [Theory]
-        [InlineData(new[] {2, 3, 4, 5, 1}, 2)]
-        [InlineData(new[] {2, 3, 4, 2, 1}, 4)]
-        [InlineData(new[] {2, 2, 2, 2, 2}, 10)]
-        public void return_sum_of_as_many_twos_as_possible(int[] dices, int expected)
+        [InlineData(new[] {2, 3, 4, 5, 1}, new[] {1,2,3,4,5,0})]
+        public void return_sum_of_as_many_twos_as_possible(int[] dices, int[] expected)
         {
-            Assert.Equal(expected, _combinationCalculator.ComputeTwo(dices));
+            
+           // Assert.Equal(expected, CombinationCalculator.Compute(dices, CombinationCalculator.Two));
+            
         }
         
         [Theory]
@@ -52,7 +52,7 @@ namespace Tests
         [InlineData(new[] { 4, 2, 6, 5, 6 })]
         public void return_0_when_no_dices_equals_3_for_combination_for_three(int[] dicesWithoutThree)
         {
-            Assert.Equal(0, _combinationCalculator.ComputeThree(dicesWithoutThree));
+            Assert.Equal(0, CombinationCalculator.Compute(dicesWithoutThree, CombinationCalculator.Three));
         }
         
         [Theory]
@@ -61,7 +61,7 @@ namespace Tests
         [InlineData(new[] {3, 3, 3, 3, 3}, 15)]
         public void return_sum_of_as_many_threes_as_possible(int[] dices, int expected)
         {
-            Assert.Equal(expected, _combinationCalculator.ComputeThree(dices));
+            Assert.Equal(expected, CombinationCalculator.Compute(dices, CombinationCalculator.Three));
         }
     }
 }   
