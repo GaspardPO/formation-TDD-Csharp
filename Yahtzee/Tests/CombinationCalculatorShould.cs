@@ -16,7 +16,7 @@ namespace Tests
         {
             Assert.Equal(0, _combinationCalculator.ComputeOnes(dicesWithoutOnes));
         }
-        
+
         [Theory]
         [InlineData(new[] {1, 3, 4, 5, 6}, 1)]
         [InlineData(new[] {2, 3, 4, 5, 1}, 1)]
@@ -37,5 +37,13 @@ namespace Tests
             Assert.Equal(0, _combinationCalculator.ComputeTwo(dicesWithoutTwo));
         }
 
+        [Theory]
+        [InlineData(new[] {2, 3, 4, 5, 1}, 2)]
+        [InlineData(new[] {2, 3, 4, 2, 1}, 4)]
+        [InlineData(new[] {2, 2, 2, 2, 2}, 10)]
+        public void return_sum_of_as_many_twos_as_possible(int[] dices, int expected)
+        {
+            Assert.Equal(expected, _combinationCalculator.ComputeTwo(dices));
+        }
     }
 }   

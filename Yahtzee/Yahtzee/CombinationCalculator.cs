@@ -11,7 +11,7 @@ namespace Yahtzee
 
         public int ComputeTwo(int[] dices)
         {
-            return 0;
+            return dices.Where(i => i==2).Sum();
         }
     }
 }
