@@ -14,8 +14,8 @@ namespace Tests
             var sumOfFoursIsZero = new Combination(new[] { 1, 2, 1, 5, 1 }, 4);
             var sumOfFivesIsZero = new Combination(new[] { 1, 2, 4, 1, 1 }, 5);
             var sumOfSixIsZero = new Combination(new[] { 1, 2, 4, 1, 1 }, 6);
-            
-            
+
+
             var upperSection = new UpperSection(
                 sumOfOnesIsZero,
                 sumOfTwosIsZero,
@@ -28,7 +28,7 @@ namespace Tests
 
             Assert.Equal(0, actual);
         }
-        
+
         [Fact]
         public void Return_X_when_ones_combination_has_points()
         {
@@ -38,8 +38,8 @@ namespace Tests
             var sumOfFoursIsZero = new Combination(new[] { 1, 2, 1, 5, 1 }, 4);
             var sumOfFivesIsZero = new Combination(new[] { 1, 2, 4, 1, 1 }, 5);
             var sumOfSixIsZero = new Combination(new[] { 1, 2, 4, 1, 1 }, 6);
-            
-            
+
+
             var upperSection = new UpperSection(
                 sumOfOnesIsTwo,
                 sumOfTwosIsZero,
@@ -52,7 +52,7 @@ namespace Tests
 
             Assert.Equal(2, actual);
         }
-        
+
         [Fact]
         public void Return_X_when_two_combinations_have_points()
         {
@@ -62,8 +62,8 @@ namespace Tests
             var sumOfFoursIsZero = new Combination(new[] { 1, 2, 1, 5, 1 }, 4);
             var sumOfFivesIsZero = new Combination(new[] { 1, 2, 4, 1, 1 }, 5);
             var sumOfSixIsZero = new Combination(new[] { 1, 2, 4, 1, 1 }, 6);
-            
-            
+
+
             var upperSection = new UpperSection(
                 sumOfOnesIsTwo,
                 sumOfTwosIsTwo,
@@ -76,7 +76,7 @@ namespace Tests
 
             Assert.Equal(4, actual);
         }
-        
+
         [Fact]
         public void Return_X_when_all_combinations_have_points()
         {
@@ -98,6 +98,50 @@ namespace Tests
             var actual = upperSection.GetTotal();
 
             Assert.Equal(25, actual);
+        }
+
+        [Fact]
+        public void Has_no_bonus_when_score_is_lower_than_63()
+        {
+            var sumOfOnesIsTwo = new Combination(new[] { 1, 1, 2, 5, 2 }, 1);
+            var sumOfTwosIsSix = new Combination(new[] { 2, 2, 2, 5, 1 }, 2);
+            var sumOfThreesIsNine = new Combination(new[] { 3, 2, 3, 3, 1 }, 3);
+            var sumOfFoursIsTwelve = new Combination(new[] { 4, 4, 1, 4, 1 }, 4);
+            var sumOfFivesIsFifteen = new Combination(new[] { 5, 5, 4, 1, 5 }, 5);
+            var sumOfSixIsEighteen = new Combination(new[] { 6, 6, 6, 1, 1 }, 6);
+
+            var upperSectionWithTotalOf62 = new UpperSection(
+                sumOfOnesIsTwo,
+                sumOfTwosIsSix,
+                sumOfThreesIsNine,
+                sumOfFoursIsTwelve,
+                sumOfFivesIsFifteen,
+                sumOfSixIsEighteen
+                );
+
+            Assert.False(upperSectionWithTotalOf62.HasABonus());
+        }
+
+        [Fact]
+        public void Has_a_bonus_when_score_is_higher_or_equal_than_63()
+        {
+            var sumOfOnesIsThree = new Combination(new[] { 1, 1, 1, 5, 2 }, 1);
+            var sumOfTwosIsSix = new Combination(new[] { 2, 2, 2, 5, 1 }, 2);
+            var sumOfThreesIsNine = new Combination(new[] { 3, 2, 3, 3, 1 }, 3);
+            var sumOfFoursIsTwelve = new Combination(new[] { 4, 4, 1, 4, 1 }, 4);
+            var sumOfFivesIsFifteen = new Combination(new[] { 5, 5, 4, 1, 5 }, 5);
+            var sumOfSixIsEighteen = new Combination(new[] { 6, 6, 6, 1, 1 }, 6);
+
+            var upperSectionWithTotalOf63 = new UpperSection(
+                sumOfOnesIsThree,
+                sumOfTwosIsSix,
+                sumOfThreesIsNine,
+                sumOfFoursIsTwelve,
+                sumOfFivesIsFifteen,
+                sumOfSixIsEighteen
+                );
+
+            Assert.True(upperSectionWithTotalOf63.HasABonus());
         }
     }
 }

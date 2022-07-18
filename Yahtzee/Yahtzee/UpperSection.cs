@@ -1,4 +1,5 @@
-﻿using Tests;
+﻿using System;
+using Tests;
 
 namespace Yahtzee
 {
@@ -25,6 +26,11 @@ namespace Yahtzee
         {
             return _combinaison1.GetValue() + _combinaison2.GetValue() + _combinaison3.GetValue() + _combinaison4.GetValue()
                 + _combinaison5.GetValue() + _combinaison6.GetValue();
+        }
+
+        public bool HasABonus()
+        {
+            return GetTotal() >= 63;
         }
     }
 }
