@@ -1,5 +1,4 @@
 ﻿using Xunit;
-using Yahtzee;
 
 namespace Tests
 {
@@ -24,5 +23,6 @@ namespace Tests
 
             Assert.Equal(expected, actual);
         }
+
     }
 }
