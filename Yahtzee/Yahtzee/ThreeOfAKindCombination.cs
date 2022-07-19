@@ -1,12 +1,26 @@
-﻿namespace Tests
-{
-    internal class ThreeOfAKindCombination
-    {
-        private int[] vs;
+﻿using System.Collections.Generic;
+using System.Linq;
 
-        public ThreeOfAKindCombination(int[] vs)
+namespace Yahtzee
+{
+    public class ThreeOfAKindCombination
+    {
+
+        private readonly List<int> Round; 
+
+        public ThreeOfAKindCombination(int[] round)
         {
-            this.vs=vs;
+            Round = round.ToList();
         }
+
+        public int GetValue()
+        {
+            if (Round.Count(r => r == 1) >= 3)
+                return 8;
+
+            return 0;
+        }
+
+        
     }
 }

@@ -1,5 +1,4 @@
-﻿using Tests;
-
+﻿
 namespace Yahtzee
 {
     public sealed class UpperSection
