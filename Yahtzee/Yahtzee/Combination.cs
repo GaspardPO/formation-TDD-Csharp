@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Tests
+namespace Yahtzee
 {
     public class Combination
     {
