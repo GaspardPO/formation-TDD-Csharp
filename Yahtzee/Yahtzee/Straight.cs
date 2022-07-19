@@ -4,45 +4,22 @@ using System.Linq;
 namespace Yahtzee
 {
     
-    public class Straight
+    public abstract class Straight
     {
-        private const int Four = 4;
-        private const int Five = 5;
+        protected int Threshold { get; set; }
+        protected int Points { get; set; }
+
         private readonly int[] _round;
-        private readonly bool _isSmall;
-        private static readonly IEnumerable<IEnumerable<int>> _possibleSmallStraights = 
-            new[] { 
-                new[] { 1, 2, 3, 4 }, 
-                new[] { 2, 3, 4, 5 }, 
-                new[] { 3, 4, 5, 6 } 
-            };
 
-        private static readonly IEnumerable<IEnumerable<int>> _possibleLargeStraights = 
-            new[] { 
-                new[] { 1, 2, 3, 4, 5 }, 
-                new[] { 2, 3, 4, 5, 6 } 
-            };
-
-        public Straight(int[] round, bool isSmall)
+        protected Straight(int[] round)
         {
             _round = round;
-            _isSmall = isSmall;
         }
 
-        public int GetValue()
-        {
-            if (!_isSmall)
-            {
-                return
-                    _possibleLargeStraights.Any(l => l.Intersect(_round).Count() == Five)
-                    ? 40 : 0;
-            }
-            else
-            {
-                return
-                    _possibleSmallStraights.Any(l => l.Intersect(_round).Count() == Four)
-                    ? 30 : 0;
-            }
-        }
+        public int GetValue() => GetPossibleStraight().Any(l => l.Intersect(_round).Count() == Threshold)
+                    ? Points 
+                    : 0;
+
+        protected abstract IEnumerable<IEnumerable<int>> GetPossibleStraight();
     }
 }

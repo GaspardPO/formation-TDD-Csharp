@@ -13,7 +13,7 @@ namespace Tests
         [InlineData(new[] { 5, 2, 3, 4, 5 })]
         public void Return_30_if_small_straight_exits(int[] round)
         {
-            var smallStraight = new Straight(round,true);
+            Straight smallStraight = new SmallStraight(round);
             var value = smallStraight.GetValue();
             Assert.Equal(30,value);
         }
@@ -24,7 +24,7 @@ namespace Tests
         [InlineData(new[] { 1, 2, 1, 4, 5 })]
         public void Return_0_if_small_straight_doesnt_exits(int[] round)
         {
-            var smallStraight = new Straight(round,true);
+            Straight smallStraight = new SmallStraight(round);
             var value = smallStraight.GetValue();
             Assert.Equal(0,value);
         }
@@ -34,7 +34,7 @@ namespace Tests
         [InlineData(new[] { 6,3,2,4,5 })]
         public void Return_40_if_large_straight_exits(int[] round)
         {
-            var largeStraight = new Straight(round,false);
+            Straight largeStraight = new LargeStraight(round);
             var value = largeStraight.GetValue();
             Assert.Equal(40, value);
         }
@@ -45,11 +45,9 @@ namespace Tests
         [InlineData(new[] { 6, 5 , 4, 3 ,1 })]
         public void Return_0_if_large_straight_doesnt_exits(int[] round)
         {
-            var largeStraight = new Straight(round,false);
+            Straight largeStraight = new LargeStraight(round);
             var value = largeStraight.GetValue();
             Assert.Equal(0, value);
         }
-
-
     }
 }
