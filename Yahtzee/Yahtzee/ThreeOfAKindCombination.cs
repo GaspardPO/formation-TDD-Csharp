@@ -6,19 +6,20 @@ namespace Yahtzee
     public class ThreeOfAKindCombination
     {
 
-        private readonly List<int> Round; 
+        private readonly List<int> _round; 
 
         public ThreeOfAKindCombination(int[] round)
         {
-            Round = round.ToList();
+            _round = round.ToList();
         }
 
         public int GetValue()
         {
-            if (Round.Count(r => r == 1) >= 3)
-                return 8;
-
-            return 0;
+            return _round
+                .GroupBy(diceValue => diceValue)
+                .Any(group => group.Count() >= 3)
+                ? _round.Sum() 
+                : 0;
         }
 
         
