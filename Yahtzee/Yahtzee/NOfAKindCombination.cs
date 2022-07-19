@@ -3,21 +3,23 @@ using System.Linq;
 
 namespace Yahtzee
 {
-    public class ThreeOfAKindCombination
+    public class NOfAKindCombination
     {
 
-        private readonly List<int> _round; 
+        private readonly List<int> _round;
+        private readonly int _iteration;
 
-        public ThreeOfAKindCombination(int[] round)
+        public NOfAKindCombination(int[] round, int iteration)
         {
             _round = round.ToList();
+            _iteration = iteration;
         }
 
         public int GetValue()
         {
             return _round
                 .GroupBy(diceValue => diceValue)
-                .Any(group => group.Count() >= 3)
+                .Any(group => group.Count() >= _iteration)
                 ? _round.Sum() 
                 : 0;
         }
